@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  getContactsFromServer,
   removeContactFromList,
   setSelectedContact,
   updateContactInList,
@@ -32,6 +33,10 @@ export const TaskList = () => {
   const dispatch = useDispatch();
   const { contactsList = [] } = useSelector((state) => state.contactsReducer);
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    dispatch(getContactsFromServer());
+  }, []);
 
   const handleEdit = (contact) => {
     console.log("handleEdit--", contact);
