@@ -1,0 +1,14 @@
+{
+    "contactsReducer": [
+        {
+            "id": 1,
+            "name": "Karthick",
+            "phoneNumber": 7894561230 
+        },
+        {
+            "id": 2,
+            "name": "Ravi",
+            "phoneNumber": 9876541234 
+        }
+    ]
+}
