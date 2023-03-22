@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { v4 as uuid } from "uuid";
 
 const initialState = {
   contactsList: [],
@@ -8,12 +7,14 @@ const initialState = {
   error: "",
 };
 
+const BASE_URL = "http://localhost:8000/contactsReducer";
+
 // GET
 
 export const getContactsFromServer = createAsyncThunk(
   "contacts/getContactsFromServer",
   async (_, { rejectWithValue }) => {
-    const response = await fetch("http://localhost:8000/contactsReducer");
+    const response = await fetch(BASE_URL);
     if (response.ok) {
       const jsonResponse = await response.json();
       return jsonResponse;
@@ -36,10 +37,7 @@ export const addContactsToServer = createAsyncThunk(
         "Content-type": "application/json; charset=UTF-8",
       },
     };
-    const response = await fetch(
-      "http://localhost:8000/contactsReducer",
-      options
-    );
+    const response = await fetch(BASE_URL, options);
     if (response.ok) {
       const jsonResponse = await response.json();
       return jsonResponse;
@@ -62,10 +60,7 @@ export const updateContactsToServer = createAsyncThunk(
         "Content-type": "application/json; charset=UTF-8",
       },
     };
-    const response = await fetch(
-      "http://localhost:8000/contactsReducer" + "/" + contact.id,
-      options
-    );
+    const response = await fetch(BASE_URL + "/" + contact.id, options);
     if (response.ok) {
       const jsonResponse = await response.json();
       return jsonResponse;
@@ -88,10 +83,7 @@ export const removeContactFromServer = createAsyncThunk(
         "Content-type": "application/json; charset=UTF-8",
       },
     };
-    const response = await fetch(
-      "http://localhost:8000/contactsReducer" + "/" + contact.id,
-      options
-    );
+    const response = await fetch(BASE_URL + "/" + contact.id, options);
     if (response.ok) {
       const jsonResponse = await response.json();
       return jsonResponse;
@@ -106,19 +98,9 @@ const contactsSlice = createSlice({
   name: "contactsSlice",
   initialState,
   reducers: {
-    addContactToList: (state, action) => {
-      const id = uuid();
-      let contacts = { ...action.payload, id };
-      state.contactsList.push(contacts);
-    },
     removeContactFromList: (state, action) => {
       state.contactsList = state.contactsList.filter(
         (contact) => contact.id !== action.payload.id
-      );
-    },
-    updateContactInList: (state, action) => {
-      state.contactsList = state.contactsList.map((contact) =>
-        contact.id === action.payload.id ? action.payload : contact
       );
     },
     setSelectedContact: (state, action) => {
@@ -196,9 +178,7 @@ const contactsSlice = createSlice({
 });
 
 export const {
-  addContactToList,
   removeContactFromList,
-  updateContactInList,
   setSelectedContact,
 } = contactsSlice.actions;
 
