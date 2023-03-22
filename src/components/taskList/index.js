@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getContactsFromServer,
   removeContactFromList,
+  removeContactFromServer,
   setSelectedContact,
   updateContactsToServer,
 } from "../../redux/slices/contactsSlice";
@@ -53,7 +54,9 @@ export const TaskList = () => {
   const handleDelete = (contact) => {
     console.log("handleDelete--", contact);
     if (window.confirm("Are you sure want to delete this contact?")) {
-      dispatch(removeContactFromList(contact));
+      dispatch(removeContactFromServer(contact))
+        .unwrap()
+        .then(() => dispatch(removeContactFromList(contact)));
     }
   };
 
