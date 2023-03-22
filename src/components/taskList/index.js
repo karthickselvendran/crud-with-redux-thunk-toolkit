@@ -4,7 +4,7 @@ import {
   getContactsFromServer,
   removeContactFromList,
   setSelectedContact,
-  updateContactInList,
+  updateContactsToServer,
 } from "../../redux/slices/contactsSlice";
 import { Table } from "../table";
 import { UpdateTask } from "../updateTask";
@@ -46,7 +46,7 @@ export const TaskList = () => {
 
   const handleUpdate = (contact) => {
     console.log("handleUpdate--", contact);
-    dispatch(updateContactInList(contact));
+    dispatch(updateContactsToServer(contact));
     setIsOpen(false);
   };
 

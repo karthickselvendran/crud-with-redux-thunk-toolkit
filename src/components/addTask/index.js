@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  addContactsToServer,
-  addContactToList,
-} from "../../redux/slices/contactsSlice";
+import { addContactsToServer } from "../../redux/slices/contactsSlice";
 import "./style.css";
-  
+
 const initialState = {
   name: "",
   phoneNumber: "",
@@ -31,7 +28,6 @@ export const AddTask = () => {
       return;
     }
     dispatch(addContactsToServer(userDetails));
-    // dispatch(addContactToList(userDetails));
     setUserDetails(initialState);
   };
 

@@ -50,6 +50,32 @@ export const addContactsToServer = createAsyncThunk(
   }
 );
 
+// PATCH
+
+export const updateContactsToServer = createAsyncThunk(
+  "contacts/updateContactsToServer",
+  async (contact, { rejectWithValue }) => {
+    let options = {
+      method: "PATCH",
+      body: JSON.stringify(contact),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    };
+    const response = await fetch(
+      "http://localhost:8000/contactsReducer" + "/" + contact.id,
+      options
+    );
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      return jsonResponse;
+    } else {
+      console.log("response--", response);
+      return rejectWithValue({ error: "Contact Not Updated" });
+    }
+  }
+);
+
 const contactsSlice = createSlice({
   name: "contactsSlice",
   initialState,
@@ -99,9 +125,28 @@ const contactsSlice = createSlice({
         state.isLoading = false;
         state.error = "";
         state.contactsList.push(action.payload);
-        // state.contactsList = action.payload;
       })
       .addCase(addContactsToServer.rejected, (state, action) => {
+        console.log(action.payload);
+        state.error =
+          action.payload && action.payload.error
+            ? action.payload.error
+            : "Error";
+        state.isLoading = false;
+        state.contactsList = [];
+      })
+
+      .addCase(updateContactsToServer.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateContactsToServer.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = "";
+        state.contactsList = state.contactsList.map((contact) =>
+          contact.id === action.payload.id ? action.payload : contact
+        );
+      })
+      .addCase(updateContactsToServer.rejected, (state, action) => {
         console.log(action.payload);
         state.error =
           action.payload && action.payload.error
