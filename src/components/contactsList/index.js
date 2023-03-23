@@ -8,7 +8,7 @@ import {
   updateContactsToServer,
 } from "../../redux/slices/contactsSlice";
 import { Table } from "../table";
-import { UpdateTask } from "../updateTask";
+import { UpdateContact } from "../updateContact";
 import "./style.css";
 
 const headersList = [
@@ -30,7 +30,7 @@ const headersList = [
   },
 ];
 
-export const TaskList = () => {
+export const ContactList = () => {
   const dispatch = useDispatch();
   const { contactsList = [] } = useSelector((state) => state.contactsReducer);
   const [isOpen, setIsOpen] = useState(false);
@@ -64,16 +64,16 @@ export const TaskList = () => {
   return (
     <>
       {contactsList && contactsList.length ? (
-        <div className="taskList">
-          <h2>Task List</h2>
+        <div className="contactsList">
+          <h2>Contacts List</h2>
           <Table
-            className={"taskListTable"}
+            className={"contactsListTable"}
             headersList={headersList}
             tableDatas={contactsList}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
           />
-          <UpdateTask
+          <UpdateContact
             isOpen={isOpen}
             handleClose={handleEdit}
             handleUpdate={handleUpdate}

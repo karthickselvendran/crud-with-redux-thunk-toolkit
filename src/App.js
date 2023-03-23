@@ -1,13 +1,13 @@
 import React from "react";
-import { Header, AddTask, TaskList } from "./components";
+import { Header, AddContact, ContactList } from "./components";
 import "./App.css";
 
 function App() {
   return (
     <div>
       <Header />
-      <AddTask />
-      <TaskList />
+      <AddContact />
+      <ContactList />
     </div>
   );
 }

@@ -1,8 +1,8 @@
 {
   "contactsReducer": [
     {
-      "name": "abc",
-      "phoneNumber": "123",
+      "name": "abcd",
+      "phoneNumber": "1234",
       "id": 1
     }
   ]

@@ -19,7 +19,6 @@ export const getContactsFromServer = createAsyncThunk(
       const jsonResponse = await response.json();
       return jsonResponse;
     } else {
-      console.log("response--", response);
       return rejectWithValue({ error: "No contacts found" });
     }
   }
@@ -42,7 +41,6 @@ export const addContactsToServer = createAsyncThunk(
       const jsonResponse = await response.json();
       return jsonResponse;
     } else {
-      console.log("response--", response);
       return rejectWithValue({ error: "Contact Not Added" });
     }
   }
@@ -65,7 +63,6 @@ export const updateContactsToServer = createAsyncThunk(
       const jsonResponse = await response.json();
       return jsonResponse;
     } else {
-      console.log("response--", response);
       return rejectWithValue({ error: "Contact Not Updated" });
     }
   }
@@ -88,14 +85,13 @@ export const removeContactFromServer = createAsyncThunk(
       const jsonResponse = await response.json();
       return jsonResponse;
     } else {
-      console.log("response--", response);
       return rejectWithValue({ error: "Contact Not Deleted" });
     }
   }
 );
 
 const contactsSlice = createSlice({
-  name: "contactsSlice",
+  name: "contacts",
   initialState,
   reducers: {
     removeContactFromList: (state, action) => {
@@ -118,7 +114,6 @@ const contactsSlice = createSlice({
         state.contactsList = action.payload;
       })
       .addCase(getContactsFromServer.rejected, (state, action) => {
-        console.log(action.payload);
         state.error =
           action.payload && action.payload.error
             ? action.payload.error
@@ -134,7 +129,6 @@ const contactsSlice = createSlice({
         state.contactsList.push(action.payload);
       })
       .addCase(addContactsToServer.rejected, (state, action) => {
-        console.log(action.payload);
         state.error =
           action.payload && action.payload.error
             ? action.payload.error
@@ -152,7 +146,6 @@ const contactsSlice = createSlice({
         );
       })
       .addCase(updateContactsToServer.rejected, (state, action) => {
-        console.log(action.payload);
         state.error =
           action.payload && action.payload.error
             ? action.payload.error
@@ -167,7 +160,6 @@ const contactsSlice = createSlice({
         state.error = "";
       })
       .addCase(removeContactFromServer.rejected, (state, action) => {
-        console.log(action.payload);
         state.error =
           action.payload && action.payload.error
             ? action.payload.error

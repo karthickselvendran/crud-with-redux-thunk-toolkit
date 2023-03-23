@@ -8,7 +8,7 @@ export const Header = () => {
     <div className="header">
       <h1>Contacts Management</h1>
       <p>{`Number of Contacts: ${contactsList && contactsList.length}`}</p>
-      {error ? <p className="error">{error}</p> : null}
+      {error && <p className="error">{error}</p>}
     </div>
   );
 };

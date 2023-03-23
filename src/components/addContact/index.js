@@ -8,7 +8,7 @@ const initialState = {
   phoneNumber: "",
 };
 
-export const AddTask = () => {
+export const AddContact = () => {
   const dispatch = useDispatch();
   const [userDetails, setUserDetails] = useState(initialState);
 

@@ -7,7 +7,7 @@ const initialState = {
   phoneNumber: "",
 };
 
-export const UpdateTask = (props) => {
+export const UpdateContact = (props) => {
   const { isOpen = false, handleUpdate = () => {} } = props;
   const { selectedContact } = useSelector((state) => state.contactsReducer);
   const [userDetails, setUserDetails] = useState(initialState);
@@ -44,8 +44,8 @@ export const UpdateTask = (props) => {
       {isOpen && (
         <>
           <div className="modalOverlay"></div>
-          <div className="updateTask">
-            <h1>UpdateTask</h1>
+          <div className="updateContact">
+            <h1>UpdateContact</h1>
             <br />
             <div>
               <label>Name</label>

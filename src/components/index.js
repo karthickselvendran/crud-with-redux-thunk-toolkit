@@ -1,4 +1,4 @@
 export { Header } from "./header";
-export { AddTask } from "./addTask";
-export { TaskList } from "./taskList";
-export { UpdateTask } from "./updateTask";
+export { AddContact } from "./addContact";
+export { ContactList } from "./contactsList";
+export { UpdateContact } from "./updateContact";
