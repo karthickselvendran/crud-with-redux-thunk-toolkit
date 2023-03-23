@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getContactsFromServer,
   removeContactFromList,
-  removeContactFromServer,
   setSelectedContact,
-  updateContactsToServer,
-} from "../../redux/slices/contactsSlice";
+  removeContactFromServer,
+  updateContactToServer,
+  getContactsFromServer,
+} from "../../redux/actions/contacts";
 import { Table } from "../table";
 import { UpdateContact } from "../updateContact";
 import "./style.css";
@@ -47,7 +47,7 @@ export const ContactList = () => {
 
   const handleUpdate = (contact) => {
     console.log("handleUpdate--", contact);
-    dispatch(updateContactsToServer(contact));
+    dispatch(updateContactToServer(contact));
     setIsOpen(false);
   };
 

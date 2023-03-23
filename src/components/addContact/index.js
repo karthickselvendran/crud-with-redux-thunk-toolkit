@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addContactsToServer } from "../../redux/slices/contactsSlice";
+import { addContactToServer } from "../../redux/actions/contacts";
 import "./style.css";
 
 const initialState = {
@@ -27,7 +27,7 @@ export const AddContact = () => {
       alert("Please enter both name and phone number");
       return;
     }
-    dispatch(addContactsToServer(userDetails));
+    dispatch(addContactToServer(userDetails));
     setUserDetails(initialState);
   };
 

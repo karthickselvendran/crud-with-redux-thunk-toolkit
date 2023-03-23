@@ -13,7 +13,7 @@ export const UpdateContact = (props) => {
   const [userDetails, setUserDetails] = useState(initialState);
 
   useEffect(() => {
-    if (Object.keys(selectedContact).length) {
+    if (selectedContact && Object.keys(selectedContact).length) {
       setUserDetails({ ...selectedContact });
     }
   }, [selectedContact]);
